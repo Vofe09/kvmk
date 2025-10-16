@@ -13,11 +13,14 @@
       <a href="index.html">Главная</a>
       <a href="vacancies.html" class="active">Вакансии</a>
       <a href="add-job.html">Разместить вакансию</a>
+      <a href="login.html">Вход</a>
+      <a href="register.html">Регистрация</a>
     </nav>
   </header>
 
   <section class="jobs">
     <h2>Актуальные вакансии</h2>
+    <input type="text" id="search" placeholder="Поиск вакансий..." onkeyup="filterJobs()">
     <div id="job-list" class="job-list"></div>
   </section>
 
@@ -29,21 +32,40 @@
     const jobList = document.getElementById('job-list');
     const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
 
-    if (jobs.length === 0) {
-      jobList.innerHTML = "<p>Пока нет вакансий. Добавьте первую!</p>";
-    } else {
-      jobs.forEach(job => {
+    function renderJobs(list) {
+      jobList.innerHTML = '';
+      if(list.length === 0) jobList.innerHTML = "<p>Пока нет вакансий. Добавьте первую!</p>";
+      
+      list.forEach((job, index) => {
         const div = document.createElement('div');
         div.classList.add('job-card');
         div.innerHTML = `
-          <h3>${job.title}</h3>
+          <h3>👤 ${job.title}</h3>
           <p>${job.description}</p>
-          <span>Оплата: ${job.salary}</span><br>
-          <span>Телефон: ${job.phone}</span>
+          <span>💰 Оплата: ${job.salary}</span><br>
+          <span>📞 Телефон: ${job.phone}</span><br><br>
+          <button onclick="deleteJob(${index})" class="delete-btn">Удалить</button>
         `;
         jobList.appendChild(div);
       });
     }
+
+    function deleteJob(index) {
+      const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+      jobs.splice(index, 1); // удаляем выбранную вакансию
+      localStorage.setItem('jobs', JSON.stringify(jobs));
+      renderJobs(jobs); // обновляем список на странице
+    }
+
+    function filterJobs() {
+      const search = document.getElementById("search").value.toLowerCase();
+      const filtered = jobs.filter(job => 
+        job.title.toLowerCase().includes(search) || job.description.toLowerCase().includes(search)
+      );
+      renderJobs(filtered);
+    }
+
+    renderJobs(jobs);
   </script>
 </body>
 </html>

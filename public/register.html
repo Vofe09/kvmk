@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — Трудовой мост</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Трудовой мост</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="vacancies.html">Вакансии</a>
+      <a href="add-job.html">Разместить вакансию</a>
+      <a href="login.html">Вход</a>
+      <a href="register.html" class="active">Регистрация</a>
+    </nav>
+  </header>
+
+  <section class="auth-section">
+    <h3>Создать аккаунт</h3>
+    <input type="text" id="register-name" placeholder="Имя">
+    <input type="password" id="register-pass" placeholder="Пароль">
+    <button onclick="register()">Зарегистрироваться</button>
+    <p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
+    <p id="auth-msg"></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Трудовой мост</p>
+  </footer>
+
+  <script>
+    function register() {
+      const name = document.getElementById("register-name").value;
+      const pass = document.getElementById("register-pass").value;
+      const msg = document.getElementById("auth-msg");
+
+      if (name && pass) {
+        localStorage.setItem("user", name);
+        localStorage.setItem("pass", pass);
+        msg.textContent = "Регистрация успешна!";
+        msg.style.color = "green";
+      } else {
+        msg.textContent = "Введите имя и пароль!";
+        msg.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>

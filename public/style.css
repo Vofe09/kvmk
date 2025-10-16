@@ -1,69 +1,130 @@
+/* Общие стили */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  background: #f7f8fa;
+  background: #e6f0fa;
   color: #333;
+  scroll-behavior: smooth;
 }
 
+/* Header */
 header {
   background: linear-gradient(90deg, #4e8ef7, #6fc2ff);
   color: white;
-  padding: 15px 20px;
+  padding: 15px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: 0.3s;
 }
 
 header h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 nav a {
   color: white;
-  margin-left: 15px;
+  margin-left: 20px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-nav a.active {
+nav a:hover {
+  color: #ffe;
   text-decoration: underline;
 }
 
+nav a.active {
+  border-bottom: 2px solid white;
+}
+
+/* Hero */
 .hero {
   text-align: center;
-  padding: 60px 20px;
-  background: white;
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #d0e4ff 100%);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+  background-attachment: fixed;
 }
 
 .hero h2 {
   color: #4e8ef7;
+  font-size: 3em;
+  margin-bottom: 15px;
+  animation: fadeInDown 1s ease;
+}
+
+.hero p {
+  font-size: 1.3em;
+  margin-bottom: 25px;
+  color: #555;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .btn {
   display: inline-block;
   background: #4e8ef7;
   color: white;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 14px 28px;
+  border-radius: 10px;
   text-decoration: none;
-  margin-top: 15px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-.jobs, .add-job {
-  padding: 40px 20px;
-  max-width: 800px;
+.btn:hover {
+  background: #3a6fd1;
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* Контейнеры */
+.jobs, .add-job, .auth-section {
+  padding: 60px 20px;
+  max-width: 900px;
   margin: auto;
 }
 
-.job-card {
+/* Карточки вакансий и формы */
+.job-card, .auth-section {
   background: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
 }
 
+.job-card:hover, .auth-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Аватары для вакансий */
+.job-card::before {
+  content: '👤';
+  font-size: 2em;
+  margin-right: 10px;
+}
+
+/* Формы */
 form {
   display: flex;
   flex-direction: column;
@@ -71,23 +132,163 @@ form {
 
 input, textarea {
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 14px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 1em;
+  transition: 0.3s;
 }
 
+input:focus, textarea:focus {
+  border-color: #4e8ef7;
+  outline: none;
+  box-shadow: 0 0 8px rgba(78,142,247,0.5);
+}
+
+/* Кнопки */
 button {
   background: #4e8ef7;
   color: white;
-  padding: 10px;
+  padding: 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
+button:hover {
+  background: #3a6fd1;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Footer */
 footer {
   text-align: center;
-  padding: 10px;
-  background: #e3f0ff;
-  margin-top: 20px;
+  padding: 20px;
+  background: #d0e4ff;
+  margin-top: 30px;
+  font-size: 0.95em;
+}
+.jobs h2 {
+  color: #4e8ef7;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#search {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  transition: 0.3s;
+}
+
+#search:focus {
+  border-color: #4e8ef7;
+  box-shadow: 0 0 8px rgba(78,142,247,0.5);
+  outline: none;
+}
+
+.job-card {
+  background: white;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.job-card h3 {
+  color: #4e8ef7;
+  margin-bottom: 10px;
+}
+
+.job-card p {
+  margin-bottom: 10px;
+  color: #555;
+}
+.jobs h2 {
+  color: #4e8ef7;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#search {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  transition: 0.3s;
+}
+
+#search:focus {
+  border-color: #4e8ef7;
+  box-shadow: 0 0 8px rgba(78,142,247,0.5);
+  outline: none;
+}
+
+.job-card {
+  background: white;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.job-card h3 {
+  color: #4e8ef7;
+  margin-bottom: 10px;
+}
+
+.job-card p {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.delete-btn {
+  background: #ff5c5c;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background: #d13a3a;
+  transform: translateY(-2px);
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 40px;  /* маленький аккуратный логотип */
+  height: 40px;
+  margin-right: 10px;
+  object-fit: contain; /* чтобы не растягивался */
+}
+
+header h1 {
+  font-size: 22px;
+  color: white;
+  margin: 0;
 }

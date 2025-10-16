@@ -13,24 +13,18 @@
       <a href="index.html">Главная</a>
       <a href="vacancies.html">Вакансии</a>
       <a href="add-job.html" class="active">Разместить вакансию</a>
+      <a href="login.html">Вход</a>
+      <a href="register.html">Регистрация</a>
     </nav>
   </header>
 
   <section class="add-job">
     <h2>Добавить вакансию</h2>
     <form id="job-form">
-      <label>Название вакансии</label>
-      <input type="text" id="title" required>
-
-      <label>Описание</label>
-      <textarea id="description" required></textarea>
-
-      <label>Оплата</label>
-      <input type="text" id="salary" required>
-
-      <label>Телефон</label>
-      <input type="text" id="phone" required>
-
+      <input type="text" id="title" placeholder="Название вакансии" required>
+      <textarea id="description" placeholder="Описание вакансии" required></textarea>
+      <input type="text" id="salary" placeholder="Оплата" required>
+      <input type="tel" id="phone" placeholder="Телефон" required>
       <button type="submit">Разместить</button>
     </form>
   </section>
@@ -43,18 +37,15 @@
     const form = document.getElementById('job-form');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-
       const job = {
         title: document.getElementById('title').value,
         description: document.getElementById('description').value,
         salary: document.getElementById('salary').value,
         phone: document.getElementById('phone').value
       };
-
       const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
       jobs.push(job);
       localStorage.setItem('jobs', JSON.stringify(jobs));
-
       alert('Вакансия успешно добавлена!');
       form.reset();
       window.location.href = 'vacancies.html';
