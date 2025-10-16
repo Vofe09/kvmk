@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Разместить вакансию — Трудовой мост</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Трудовой мост</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="vacancies.html">Вакансии</a>
+      <a href="add-job.html" class="active">Разместить вакансию</a>
+    </nav>
+  </header>
+
+  <section class="add-job">
+    <h2>Добавить вакансию</h2>
+    <form id="job-form">
+      <label>Название вакансии</label>
+      <input type="text" id="title" required>
+
+      <label>Описание</label>
+      <textarea id="description" required></textarea>
+
+      <label>Оплата</label>
+      <input type="text" id="salary" required>
+
+      <label>Телефон</label>
+      <input type="text" id="phone" required>
+
+      <button type="submit">Разместить</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Трудовой мост</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('job-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const job = {
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        salary: document.getElementById('salary').value,
+        phone: document.getElementById('phone').value
+      };
+
+      const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+      jobs.push(job);
+      localStorage.setItem('jobs', JSON.stringify(jobs));
+
+      alert('Вакансия успешно добавлена!');
+      form.reset();
+      window.location.href = 'vacancies.html';
+    });
+  </script>
+</body>
+</html>
