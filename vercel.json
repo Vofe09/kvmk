@@ -1,8 +1,5 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/photos/:key",
-      "destination": "/api/photos.js"
-    }
-  ]
+  "version": 2,
+  "public": true,
+  "cleanUrls": true
 }
